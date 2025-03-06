@@ -14,6 +14,8 @@ This project implements a real-time fluid simulation based on Jos Stam's "Stable
 - Custom visualization without external dependencies
 - Frame-by-frame PPM image output
 - FPS counter for performance monitoring
+- **New**: Frame limit option for controlled video length
+- **New**: One-step simulation to video conversion
 
 ## Project Structure
 
@@ -22,6 +24,7 @@ This project implements a real-time fluid simulation based on Jos Stam's "Stable
 - `Renderer.h/cpp` - Custom rendering system
 - `build.bat` - Windows build script for MSVC
 - `convert_to_video.bat` - Script to convert frames to video using FFmpeg
+- `run_sim_to_video.bat` - **New**: Combined simulation and video generation
 - `CMakeLists.txt` - Alternative CMake build system
 - `.vscode/` - VS Code configuration files
 
@@ -33,14 +36,30 @@ This project implements a real-time fluid simulation based on Jos Stam's "Stable
 # Build the project
 build.bat
 
-# Build and run the simulation
+# Build and run the simulation with default settings (unlimited frames)
 build.bat run
 
-# Clean the project
-build.bat clean
+# Build and run with a specific frame count
+build.bat run 300
 ```
 
 Note: The build script has been simplified for maximum compatibility. Make sure to run it from a Developer Command Prompt for Visual Studio.
+
+### Using the Combined Simulation and Video Tool
+
+```batch
+# Generate 300 frames at 30fps (defaults)
+run_sim_to_video.bat
+
+# Generate 100 frames at 30fps
+run_sim_to_video.bat 100
+
+# Generate 200 frames at 60fps
+run_sim_to_video.bat 200 60
+
+# Generate 150 frames at 24fps with custom filename
+run_sim_to_video.bat 150 24 my_animation
+```
 
 ### Using CMake with MSVC
 
@@ -84,6 +103,9 @@ convert_to_video.bat
 
 # Convert frames with a specific framerate
 convert_to_video.bat 60
+
+# Convert frames with specific framerate and output name
+convert_to_video.bat 60 my_fluid_video
 ```
 
 ### Using VS Code Task

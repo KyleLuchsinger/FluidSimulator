@@ -96,13 +96,85 @@
             }
         },
         {
-            "label": "Run",
+            "label": "Run (Default)",
             "type": "shell",
             "command": "build.bat run",
             "group": {
                 "kind": "test",
                 "isDefault": true
             },
+            "presentation": {
+                "reveal": "always",
+                "panel": "shared"
+            },
+            "dependsOn": [
+                "Build with MSVC"
+            ],
+            "windows": {
+                "options": {
+                    "shell": {
+                        "executable": "cmd.exe",
+                        "args": [
+                            "/d",
+                            "/c"
+                        ]
+                    }
+                }
+            }
+        },
+        {
+            "label": "Run (100 Frames)",
+            "type": "shell",
+            "command": "build.bat run 100",
+            "group": "test",
+            "presentation": {
+                "reveal": "always",
+                "panel": "shared"
+            },
+            "dependsOn": [
+                "Build with MSVC"
+            ],
+            "windows": {
+                "options": {
+                    "shell": {
+                        "executable": "cmd.exe",
+                        "args": [
+                            "/d",
+                            "/c"
+                        ]
+                    }
+                }
+            }
+        },
+        {
+            "label": "Run (200 Frames)",
+            "type": "shell",
+            "command": "build.bat run 200",
+            "group": "test",
+            "presentation": {
+                "reveal": "always",
+                "panel": "shared"
+            },
+            "dependsOn": [
+                "Build with MSVC"
+            ],
+            "windows": {
+                "options": {
+                    "shell": {
+                        "executable": "cmd.exe",
+                        "args": [
+                            "/d",
+                            "/c"
+                        ]
+                    }
+                }
+            }
+        },
+        {
+            "label": "Run (500 Frames)",
+            "type": "shell",
+            "command": "build.bat run 500",
+            "group": "test",
             "presentation": {
                 "reveal": "always",
                 "panel": "shared"
@@ -145,7 +217,28 @@
         {
             "label": "Convert Frames to Video",
             "type": "shell",
-            "command": "ffmpeg -y -framerate 30 -i frames/frame_%04d.ppm -c:v libx264 -pix_fmt yuv420p -crf 23 output.mp4",
+            "command": "convert_to_video.bat 30",
+            "presentation": {
+                "reveal": "always",
+                "panel": "shared"
+            },
+            "windows": {
+                "options": {
+                    "shell": {
+                        "executable": "cmd.exe",
+                        "args": [
+                            "/d",
+                            "/c"
+                        ]
+                    }
+                }
+            },
+            "group": "test"
+        },
+        {
+            "label": "Convert Frames to Video (60fps)",
+            "type": "shell",
+            "command": "convert_to_video.bat 60",
             "presentation": {
                 "reveal": "always",
                 "panel": "shared"

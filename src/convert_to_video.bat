@@ -24,7 +24,13 @@ if "%1"=="" (
 
 echo Using framerate: %FPS% fps
 
-ffmpeg -y -framerate %FPS% -i frames/frame_%%04d.ppm -c:v libx264 -pix_fmt yuv420p -crf 23 fluid_simulation.mp4
+if "%2"=="" (
+    set OUTPUT=fluid_simulation.mp4
+) else (
+    set OUTPUT=%2.mp4
+)
+
+ffmpeg -y -framerate %FPS% -i frames/frame_%%04d.ppm -c:v libx264 -pix_fmt yuv420p -crf 23 %OUTPUT%
 
 if %ERRORLEVEL% NEQ 0 (
     echo Error: FFmpeg failed to convert frames to video.
@@ -32,4 +38,4 @@ if %ERRORLEVEL% NEQ 0 (
     exit /b 1
 )
 
-echo Video created successfully: fluid_simulation.mp4
+echo Video created successfully: %OUTPUT%

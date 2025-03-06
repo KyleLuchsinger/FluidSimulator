@@ -15,7 +15,11 @@ cl.exe /nologo /EHsc /W4 /std:c++17 /O2 /MD /I. /Fo:build/ /Fe:fluid_sim.exe mai
 
 if "%1"=="run" (
     echo Running...
-    fluid_sim.exe
+    if "%2"=="" (
+        fluid_sim.exe
+    ) else (
+        fluid_sim.exe %2
+    )
 )
 
 :end
