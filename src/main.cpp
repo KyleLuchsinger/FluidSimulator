@@ -9,7 +9,7 @@ const int WINDOW_WIDTH = 800;
 const int WINDOW_HEIGHT = 600;
 const int GRID_SIZE = 100;
 const float TIME_STEP = 0.1f;
-const float DIFFUSION = 0.00005f;  // Reduced diffusion rate so dye stays visible longer
+const float DIFFUSION = 0.00005f;
 const float VISCOSITY = 0.0001f;
 
 int main() {
@@ -28,7 +28,6 @@ int main() {
         }
     }
 
-    // Add some interesting initial velocities
     simulator.addVelocity(GRID_SIZE / 2, GRID_SIZE / 2, 20.0f, 0.0f);
     simulator.addVelocity(GRID_SIZE / 2 - 10, GRID_SIZE / 2 + 10, 10.0f, -10.0f);
     simulator.addVelocity(GRID_SIZE / 2 + 10, GRID_SIZE / 2 + 10, -10.0f, -10.0f);
