@@ -1,0 +1,28 @@
+# Build output
+build/
+*.o
+*.obj
+*.exe
+fluid_sim
+
+# Generated frames
+frames/
+*.ppm
+
+# Visual Studio Code
+.vscode/.browse.VC*
+
+# CMake
+CMakeCache.txt
+CMakeFiles/
+cmake_install.cmake
+Makefile.cmake
+
+# System files
+.DS_Store
+Thumbs.db
+
+# Backup files
+*~
+*.bak
+*.swp
