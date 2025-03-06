@@ -8,6 +8,7 @@ fluid_sim
 # Generated frames
 frames/
 *.ppm
+.mp4
 
 # Visual Studio Code
 .vscode/.browse.VC*

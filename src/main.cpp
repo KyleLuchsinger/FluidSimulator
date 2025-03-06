@@ -9,7 +9,7 @@ const int WINDOW_WIDTH = 800;
 const int WINDOW_HEIGHT = 600;
 const int GRID_SIZE = 100;
 const float TIME_STEP = 0.1f;
-const float DIFFUSION = 0.0001f;
+const float DIFFUSION = 0.00005f;  // Reduced diffusion rate so dye stays visible longer
 const float VISCOSITY = 0.0001f;
 
 int main() {
@@ -18,9 +18,20 @@ int main() {
 
     bool running = true;
 
-    // Add some initial density and velocity
-    simulator.addDensity(GRID_SIZE / 2, GRID_SIZE / 2, 100.0f);
-    simulator.addVelocity(GRID_SIZE / 2, GRID_SIZE / 2, 5.0f, 0.0f);
+    for (int i = -5; i <= 5; i++) {
+        for (int j = -5; j <= 5; j++) {
+            float distance = sqrt(i * i + j * j);
+            if (distance <= 5) {
+                simulator.addDensity(GRID_SIZE / 2 + i, GRID_SIZE / 2 + j,
+                                     200.0f * (1.0f - distance / 5.0f));
+            }
+        }
+    }
+
+    // Add some interesting initial velocities
+    simulator.addVelocity(GRID_SIZE / 2, GRID_SIZE / 2, 20.0f, 0.0f);
+    simulator.addVelocity(GRID_SIZE / 2 - 10, GRID_SIZE / 2 + 10, 10.0f, -10.0f);
+    simulator.addVelocity(GRID_SIZE / 2 + 10, GRID_SIZE / 2 + 10, -10.0f, -10.0f);
 
     // FPS calculation
     auto lastTime = std::chrono::high_resolution_clock::now();

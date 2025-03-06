@@ -48,7 +48,7 @@ void Renderer::renderFluid(const FluidSimulator& simulator) {
         for (int x = 0; x < simSize; x++) {
             float d = density[x + y * simSize];
 
-            if (d < 0.01f) continue;
+            if (d < 0.001f) continue;  // Lower threshold for better visibility
 
             Color color = densityToColor(d);
 
@@ -93,7 +93,7 @@ void Renderer::setPixel(int x, int y, const Color& color) {
 
 Color Renderer::densityToColor(float density) const {
     // Map density to a color
-    density = (std::min)(1.0f, (std::max)(0.0f, density / 100.0f));
+    density = (std::min)(1.0f, (std::max)(0.0f, density / 50.0f));  // Increased brightness
 
     // HSV to RGB conversion for a nice color gradient
     float h = (1.0f - density) * 240.0f;  // Hue (0-360) - from red to blue
