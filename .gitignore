@@ -2,6 +2,7 @@
 build/
 *.o
 *.obj
+*.pdb
 *.exe
 fluid_sim
 
